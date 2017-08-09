@@ -1,0 +1,14 @@
+{
+  "name": "brion",
+  "version": "1.0.0",
+  "description": "Convenient HTML imports for ion.",
+  "bin": "index.js",
+  "scripts": {
+    "dev": "npm link"
+  },
+  "engines": {
+        "node": "^0.10.x"
+  },
+  "author": "KodyJKing",
+  "license": "MIT"
+}
