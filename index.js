@@ -28,7 +28,9 @@ function buildImport() {
     let imports = []
     for (let module of modules) {
         let path = module == '.' ? 'lib' : 'node_modules/' + module + '/lib'
-        let files = JSON.parse(fs.readFileSync(path + '/manifest.json', 'utf8')).files
+        let manifest = fs.readFileSync(path + '/manifest.json', 'utf8')
+        // console.log(manifest)
+        let files = JSON.parse(manifest).files
         for (let file of files) imports.push(`<script src='${path}/${file}'></script>`)
     }
 
@@ -56,6 +58,8 @@ if (flags.w) {
         let path = module == '.' ? 'lib' : 'node_modules/' + module + '/lib/manifest.json'
         paths.push(path)
     }
+
+    // console.log("Watching paths:", JSON.stringify(paths))
 
     for (let path of paths) {
         fs.watch(path, () => {

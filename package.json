@@ -4,7 +4,7 @@
   "description": "Convenient HTML imports for ion.",
   "bin": "index.js",
   "scripts": {
-    "dev": "npm link"
+    "dev": "yarn link"
   },
   "engines": {
         "node": "^0.10.x"
