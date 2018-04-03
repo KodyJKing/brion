@@ -47,11 +47,20 @@ buildImport()
 console.log('Finished building imports')
 
 if (flags.w) {
+    let paths = []
+
+    if (flags.t != undefined)
+        paths.push(flags.t)
+
     for (let module of modules) {
         let path = module == '.' ? 'lib' : 'node_modules/' + module + '/lib/manifest.json'
+        paths.push(path)
+    }
+
+    for (let path of paths) {
         fs.watch(path, () => {
             buildImport()
             console.log('Rebuilt imports.')
-        } )
+        })
     }
 }
