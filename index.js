@@ -30,8 +30,12 @@ function buildImport() {
         let path = module == '.' ? 'lib' : 'node_modules/' + module + '/lib'
         let manifest = fs.readFileSync(path + '/manifest.json', 'utf8')
         // console.log(manifest)
-        let files = JSON.parse(manifest).files
-        for (let file of files) imports.push(`<script src='${path}/${file}'></script>`)
+        try {
+            let files = JSON.parse(manifest).files
+            for (let file of files) imports.push(`<script src='${path}/${file}'></script>`)
+        } catch (e) {
+            console.log("Couldn't parse manifest.")
+        }
     }
 
     let template
